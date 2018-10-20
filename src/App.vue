@@ -1,17 +1,25 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="row vh-100">
+      <Sidebar/>
+      
+      <div class="col-11">
+        <BudgetList/>
+      </div>
+    </div>
+   
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Sidebar from './components/Sidebar.vue'
+import BudgetList from './components/BudgetList.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    Sidebar,
+    BudgetList
   }
 }
 </script>
@@ -21,8 +29,10 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+.vh-100 {
+  height: 100vh;
 }
 </style>
