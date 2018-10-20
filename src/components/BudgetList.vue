@@ -1,6 +1,7 @@
 <template>
-  <main>
-    <table class="table">
+  <div class="row">
+    <div class="col-8">
+       <table class="table">
       <thead>
         <tr>
           <th>Name</th>
@@ -15,7 +16,7 @@
             {{ category.name }}
           </td>
           <td>
-            <input type="number" value="0">
+            <input min="0" type="number" v-model="category.budgeted">
           </td>
           <td>
             0
@@ -33,7 +34,28 @@
       <input autofocus type=text v-model="newCategory.name"></input>
       <button class="btn btn-primary ml-3">Add category</button>
     </form>
-  </main>
+    </div>
+
+    <div class="col-4 p-4 vh-100" style="background: #007bff1a none repeat scroll 0% 0%;">
+      <div class="mb-3">
+        <h4>TOTAL BUDGETED</h4>
+        {{ totalBudgeted }}
+      </div>
+      <div class="mb-3">
+        <h4>TOTAL ACTIVITY</h4>
+        -
+      </div>
+      <div class="mb-3">
+        <h4>TOTAL AVAILABLE</h4>
+        -
+      </div>
+      <div class="mb-3">
+        <h4>TOTAL INFLOWS</h4>
+        -
+      </div>
+    </div>
+   
+  </div>
 </template>
 
 <script>
@@ -66,6 +88,12 @@ export default {
         });
         this.newCategory.name = '';
       }
+    }
+  },
+  computed: {
+    totalBudgeted() {
+      let total = this.categories.reduce((cat, val) => parseInt(cat) + parseInt(val.budgeted), 0)
+      return '€' + total;
     }
   }
 }
